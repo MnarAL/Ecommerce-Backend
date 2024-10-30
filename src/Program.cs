@@ -8,6 +8,18 @@ using System.Diagnostics;
 var builder = WebApplication.CreateBuilder(args);
 DotNetEnv.Env.Load();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder
+            .WithOrigins("http://localhost:5179/")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials();
+    });
+});
+
 // Get JWT settings from environment variables
 var jwtKey = Environment.GetEnvironmentVariable("Jwt__Key") ?? throw new InvalidOperationException("JWT Key is missing in environment variables.");
 var jwtIssuer = Environment.GetEnvironmentVariable("Jwt__Issuer") ?? throw new InvalidOperationException("JWT Issuer is missing in environment variables.");
@@ -130,7 +142,7 @@ app.MapGet("/", () =>
     return "hello I am lazy today";
 });
 
-app.UseCors("AllowSpecificOrigins");
+app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
