@@ -75,6 +75,7 @@ public ProductService(AppDBContext appDbContext,IMapper mapper){
             Id = p.Id,
             Name = p.Name,
             Price = p.Price,
+            ImageUrl = p.ImageUrl,
             CategoryName = p.Category.CategoryName // إضافة اسم الفئة لكل منتج
         }).ToList();
 
