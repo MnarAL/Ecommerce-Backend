@@ -13,7 +13,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll", builder =>
     {
         builder
-            .WithOrigins("http://localhost:5179/")
+            .WithOrigins("http://localhost:5179")
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials();
@@ -98,17 +98,17 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowSpecificOrigins", builder =>
-    {
-        builder.WithOrigins("http://localhost:5173", // Specify the allowed origins
-                            "https://www.yourclientapp.com") // Add additional origins as needed
-              .AllowAnyMethod() // Allows all methods
-              .AllowAnyHeader() // Allows all headers
-              .AllowCredentials(); // Allows credentials like cookies, authorization headers, etc.
-    });
-});
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("AllowSpecificOrigins", builder =>
+//     {
+//         builder.WithOrigins("http://localhost:5173", // Specify the allowed origins
+//                             "https://www.yourclientapp.com") // Add additional origins as needed
+//               .AllowAnyMethod() // Allows all methods
+//               .AllowAnyHeader() // Allows all headers
+//               .AllowCredentials(); // Allows credentials like cookies, authorization headers, etc.
+//     });
+// });
 
 var app = builder.Build();
 
