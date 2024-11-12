@@ -76,7 +76,10 @@ public ProductService(AppDBContext appDbContext,IMapper mapper){
             Name = p.Name,
             Price = p.Price,
             ImageUrl = p.ImageUrl,
-            CategoryName = p.Category.CategoryName // إضافة اسم الفئة لكل منتج
+            Description = p.Description,
+            CategoryName = p.Category.CategoryName
+          
+             // إضافة اسم الفئة لكل منتج
         }).ToList();
 
         // 7. إرجاع النتيجة مع معلومات البيجنيشن

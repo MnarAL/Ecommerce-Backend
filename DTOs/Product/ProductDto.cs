@@ -11,6 +11,7 @@ public record ProductDto
     public required decimal Price { get; set; }
     public required string CategoryName { get; set; }
 
+    public string Description { get; set; }= string.Empty;
   public required string ImageUrl { get; set;} 
 
     

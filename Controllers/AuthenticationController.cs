@@ -31,8 +31,8 @@ using Microsoft.IdentityModel.Tokens;
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserLoginDto userLoginDto)
         {
-            var token = await _authService.LoginService(userLoginDto);
-            return Created("", new { Token = token });
+            var result = await _authService.LoginService(userLoginDto);
+            return Created("",result);
         }
 
         

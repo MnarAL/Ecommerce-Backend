@@ -35,7 +35,7 @@ public class AuthService {
 
             return "user is created successfully"; }
             
-             public async Task<string> LoginService(UserLoginDto userLoginDto)
+             public async Task<object> LoginService(UserLoginDto userLoginDto)
         {
             var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Email == userLoginDto.Email);
             if (user == null || !BCrypt.Net.BCrypt.Verify(userLoginDto.Password, user.Password))
@@ -43,9 +43,15 @@ public class AuthService {
                 return "Email/Password is incorrect";
             }
 
-            var token = GenerateJwtToken(user);
+            var userToken = GenerateJwtToken(user);
+            var result = new{
+                token =userToken ,
+                userName = user.Name ,
+                userId = user.UserId,
+                Admin = user.IsAdmin,
+            };
 
-            return token;
+            return result;
         }
 
         public string GenerateJwtToken(User user)

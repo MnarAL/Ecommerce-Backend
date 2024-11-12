@@ -48,6 +48,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
           entity.HasIndex(e => e.Name).IsUnique();
           entity.Property(e=>e.Price).IsRequired();
           entity.Property(e=>e.ImageUrl).IsRequired();
+           entity.Property(e=>e.Description).IsRequired();
           entity.Property(e=>e.CreatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
           });
           modelBuilder.Entity<Category>()
